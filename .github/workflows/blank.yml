@@ -1,8 +1,8 @@
-name: otus_hw
+name: MyWork
 
 on:
   push:
-    branches: [ "main" ]
+    
 
   pull_request:
     branches: [ "main" ]

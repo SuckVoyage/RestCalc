@@ -1,0 +1,33 @@
+name: otus_hw
+
+on:
+  push:
+    branches: [ "main" ]
+
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - run: cmake --build . --target package
+    
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ SECRETS.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.run_number }}
+        release_number: Release  ${{ github.run_number }}
+        draft: false
+        prerelease: false
+    - name: Upload build
+      uses: actions/upload-artifact@v4 
+      with:
+        name: homework1
+        path: /home/runner/work/RestCalc/RestCalc

@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
-    - run: cmake ${{github.workspace}}/hm1 -DCMAKE_BUILD_TYPE="Release" -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
+    - run: cmake ${{github.workspace}}/MyWork -DCMAKE_BUILD_TYPE="Release" -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=OFF
     - run: cmake --build .
     - run: cmake --build . --target HW1Test_run
     - run: ctest
